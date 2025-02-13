@@ -46,7 +46,7 @@ constexpr auto internal::unpack(std::index_sequence<Items...>, Input&& packedInp
         formats[Items].formatChar
     > ...>;
 
-    constexpr size_t offsets[] = { getBinaryOffset<Items>(Fmt{})... };
+    const size_t offsets[] = { getBinaryOffset<Items>(Fmt{})... };
     auto unpacked = std::make_tuple(unpackElement<Items, std::tuple_element_t<Items, Types>>(
         std::data(packedInput) + offsets[Items], formats[Items].size, formatMode.isBigEndian())...);
 
